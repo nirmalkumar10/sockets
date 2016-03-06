@@ -1,0 +1,54 @@
+Program 1: TCP client server
+
+Server$ ./netcatd 5000 > mybinary
+Client$ cat netcat | ./netcat 127.0.0.1 5000  
+
+Binary file "netcat" is sent from client to server .Server prints it to stdout and redirects it to mybinary..
+
+Server$ ./netcatd 5000 > mytext
+Client$ cat txt | ./netcat 127.0.0.1 5000
+
+Text file "txt" is sent from client to server.Server prints it to stdout and redirects it to mytext.
+
+
+Program 2: UDP client server -throughput analysis
+
+Server$  ./spdtestd 5000 1024 1
+Client$  ./spdtest 127.0.0.1 5000 1024          Throughput :7189.600023 Kbps 
+
+Server$ ./spdtestd 5000 1024 10
+Client$ ./spdtest 127.0.0.1 5000 1024           Throughput :800.470481 Kbps
+
+Server$  ./spdtestd 5000 1024 100         	
+Client$  ./spdtest 127.0.0.1 5000 1024          Throughput :81.459055 Kbps
+
+Server$  ./spdtestd 5000 8192 1
+Client$  ./spdtest 127.0.0.1 5000 8192          Throughput :55344.424739 Kbps
+
+Server$  ./spdtestd 5000 8192 10
+Client$  ./spdtest 127.0.0.1 5000 8192          Throughput :6406.204177 Kbps
+
+Server$  ./spdtestd 5000 8192 100
+Client$  ./spdtest 127.0.0.1 5000 8192          Throughput :653.864753 Kbps
+
+Server$  ./spdtestd 5000 32768 1
+Client$  ./spdtest 127.0.0.1 5000 32768         Throughput :221552.331314 Kbps
+
+Server$  ./spdtestd 5000 32768 10
+Client$  ./spdtest 127.0.0.1 5000 32768         Throughput :25774.395380 Kbps         
+
+Server$  ./spdtestd 5000 32768 100
+Client$  ./spdtest 127.0.0.1 5000 32768         Throughput :2616.130721 Kbps
+
+
+Largest message size allowed by UDP: 65507  <--->  65,507 bytes (65,535 − 8 byte UDP header − 20 byte IP header)
+
+Server$ ./spdtestd 5000 65507 1  
+Client$ ./spdtest 127.0.0.1 5000 65507          Throughput :435436.516729 Kbps
+
+Server$ ./spdtestd 5000 65507 10  
+Client$ ./spdtest 127.0.0.1 5000 65507          Throughput :51625.678529 Kbps
+
+Server$ ./spdtestd 5000 65507 100  
+Client$ ./spdtest 127.0.0.1 5000 65507          Throughput :5229.002086 Kbps
+
