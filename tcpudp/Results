@@ -3,13 +3,14 @@ Program 1: TCP client server
 Server$ ./netcatd 5000 > mybinary
 Client$ cat netcat | ./netcat 127.0.0.1 5000  
 
-Binary file "netcat" is sent from client to server .Server prints it to stdout and redirects it to mybinary..
+Binary file "netcat" is sent from client to server .Server prints it to stdout and redirects it to mybinary.
+netcat binary is generated after "make".
 
 Server$ ./netcatd 5000 > mytext
 Client$ cat txt | ./netcat 127.0.0.1 5000
 
 Text file "txt" is sent from client to server.Server prints it to stdout and redirects it to mytext.
-
+txt file is attached.
 
 Program 2: UDP client server -throughput analysis
 
