@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
 		recvd =fread(buffer,1,sizeof(buffer),input);
 	send(clientSocket,buffer, recvd, 0);
 	}
-
+	
+	close(clientSocket);
 	return 0;
 }
