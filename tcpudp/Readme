@@ -1,0 +1,66 @@
+Program 1: 
+
+Files: netcatd.c netcat.c
+
+netcatd.c: 
+           *TCP server listens on port provided by user.
+	   *Server reads data sent by client and writes it to stdout.
+	   *It also prints the client's ip and port number to stderr.
+	   *Server exits after client closes the connection and there are no more data to read
+
+netcat.c:
+	  *The client connectd to the server specified by the user.
+	  *Client then reads data from stdin and writes data to server.
+          *When Client reads EOF from stdin,it closes the connection and exits.
+
+
+Program 2:
+
+Files : spdtestd.c spdtest.c
+
+
+spdtestd.c:
+	  *UDP server takes port number,message size and sleep time as it's arguments.
+	  *The Server receives message of given size from the client.
+	  *The Server then sleeps for the time specifed and sends an acknowledgement to client.
+	  *The server repeats this for 30 messages and exits.
+
+spdtest.c:
+	 *The client writes a message of given size to the server and waits for an ack from server.
+	 *The client repeats this for 30 times and calculates throughput for 30 messages with time taken for
+	  sending 30 messages and receiving an ack. 
+
+
+common.h :
+	 *Contains all header files related to the above programs.
+	 *Enable DEBUG in this file to get debug prints.
+
+
+Compilation : "Makefile" compiles the above programs and produces the following executables ("Make") - netcatd,netcat,spdtestd,spdtest.
+
+
+Execution:
+
+  Program 1: TCP client server
+			
+  Server:$ ./netcatd 5000 > servercopy    ( ./netcatd "port number" > "anyfile name" )
+  
+  (To transfer text file)
+  Client:$  cat txt | ./netcat 127.0.0.1 5000  (cat "text file to transfer" | ./netcat "server ip-address" "port number of server") 
+                         (or) 
+  (To transfer binary file)
+  Client:$ cat netcat | ./netcat 127.0.0.1 5000 (cat "binary file to transfer" | ./netcat "server ip-address" "server port number")
+		
+ 
+  Program 2: UDP client server
+
+  Server:$  ./spdtestd 6000 1024 10     (./spdtestd "server portnumber" "message size" "time in milliseconds")
+	
+  Client:$  ./spdtest 127.0.0.1 6000 1024 (./spdtest "server ip-address" "port number" "message size" )
+
+
+References:
+
+	
+
+
